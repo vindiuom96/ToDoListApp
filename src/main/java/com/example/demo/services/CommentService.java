@@ -19,7 +19,7 @@ public class CommentService {
 
 	// create operation
 	public Comment create(Comment comment) {
-     comment.setId(UUID.randomUUID().toString());
+		comment.setId(UUID.randomUUID().toString());
 		return commentRepository.save(comment);
 
 	}
@@ -39,7 +39,7 @@ public class CommentService {
 	public Comment update(String id, Comment comment) {
 		Comment updated = commentRepository.findById(comment.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + comment.getId()));
-		
+
 		updated.setfirstName(comment.getfirstName());
 		return commentRepository.save(updated);
 
@@ -53,12 +53,10 @@ public class CommentService {
 	}
 
 	public void delete(String id) {
-		
-		
+
 		Comment c = commentRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + id));
 		commentRepository.delete(c);
-		
 
 	}
 }
